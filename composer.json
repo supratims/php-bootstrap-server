@@ -1,0 +1,14 @@
+{
+	"name": "supratims/php-server",
+	"description": "Simple php rest server",
+	"authors": [
+		{
+            	"name": "Supratim Chowdhury",
+		"email": "supratims@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"m1ke/easy-sql": "dev-x1.5"
+	}
+}

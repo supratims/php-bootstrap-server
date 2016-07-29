@@ -1,0 +1,117 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "777cf1158de37d62748caf63ba360528",
+    "content-hash": "b46ad9dcb9197230c17ef082d6853f30",
+    "packages": [
+        {
+            "name": "aura/sql",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/auraphp/Aura.Sql.git",
+                "reference": "842ea73ed132dcee8c0a3a896aae57c01568782f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/auraphp/Aura.Sql/zipball/842ea73ed132dcee8c0a3a896aae57c01568782f",
+                "reference": "842ea73ed132dcee8c0a3a896aae57c01568782f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "aura": {
+                    "type": "library"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aura\\Sql\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aura.Sql Contributors",
+                    "homepage": "https://github.com/auraphp/Aura.Sql/contributors"
+                }
+            ],
+            "description": "A PDO extension that provides lazy connections, array quoting, identifier quoting, query profiling, value binding, and convenience methods for common fetch styles. Because it extends PDO, existing code that uses PDO can use this without any changes to the existing code.",
+            "homepage": "https://github.com/auraphp/Aura.Sql",
+            "keywords": [
+                "mysql",
+                "pdo",
+                "pgsql",
+                "postgres",
+                "postgresql",
+                "sql server",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
+            ],
+            "time": "2016-05-01 14:56:48"
+        },
+        {
+            "name": "m1ke/easy-sql",
+            "version": "dev-x1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/M1ke/easy-sql.git",
+                "reference": "f1564fc2e5df8a396b2ddf92d2d53872ff8d7421"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/M1ke/easy-sql/zipball/f1564fc2e5df8a396b2ddf92d2d53872ff8d7421",
+                "reference": "f1564fc2e5df8a396b2ddf92d2d53872ff8d7421",
+                "shasum": ""
+            },
+            "require": {
+                "aura/sql": "^2.4.3",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "m1ke/git-php-lint": "1.0.0",
+                "phpunit/phpunit": "4.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "M1ke\\Sql\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "M1ke",
+                    "homepage": "https://twitter.com/m1ke"
+                }
+            ],
+            "description": "Builds on Aura's ExtendedPdo to add database manipulation helpers and persistent connections",
+            "time": "2016-03-22 17:16:01"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "m1ke/easy-sql": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.4.0"
+    },
+    "platform-dev": []
+}
