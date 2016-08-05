@@ -1,5 +1,4 @@
 <?php
-require_once 'bootstrap.php';
 
 class Login {
 
@@ -14,4 +13,5 @@ class Login {
 	public function isAdmin(){
 
 	}
+
 }
