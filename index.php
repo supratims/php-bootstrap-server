@@ -7,14 +7,9 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 require 'vendor/autoload.php';
 
 define('DIR', __DIR__);
-define('TWIG_SRC', DIR.'/templates');
-define('TWIG_CACHE', DIR.'/twig_cache');
+define('TWIG_SRC', DIR . '/templates');
+define('TWIG_CACHE', DIR . '/twig_cache');
 
-$loader = new Twig_Loader_Filesystem(TWIG_SRC);
-$twig = new Twig_Environment($loader, [
-	'cache' => TWIG_CACHE,
-	'auto_reload' => true,
-]);
 
 spl_autoload_register(function ($classname){
 	require("objects/" . $classname . ".php");
@@ -56,20 +51,54 @@ $container['db'] = function ($c){
 
 	return $pdo;
 };
+$container['twig'] = function ($c){
+	$loader = new Twig_Loader_Filesystem(TWIG_SRC);
+	$twig = new Twig_Environment($loader, [
+		'cache' => TWIG_CACHE,
+		'auto_reload' => true,
+	]);
+
+	return $twig;
+};
 
 $app->get('/', function (Request $request, Response $response, $args = []){
 	$response->getBody()->write("Home");
 });
 
 $app->get('/login', function (Request $request, Response $response, $args = []){
-	$response->getBody()->write("Login");
+
+	$response = $this->twig->render('login.twig');
+
+	return $response;
+});
+
+$app->post('/login', function (Request $request, Response $response, $args = []){
+
+	$login = new Login($this->db);
+	$auth = $login->authenticate($request->getAttribute('login'), $request->getAttribute('password'));
+
+	if ($auth){
+		$this->get('cookies')->set('pass', [
+			'value' => $args['name'],
+			'expires' => '7 days'
+		]);
+		$response->getBody()->write('Success');
+	}
+	else {
+		$response->getBody()->write('Failed');
+	}
+
+	// Redirect
+	//return $res->withStatus(302)->withHeader('Location', 'your-new-uri');
 });
 
 $app->get('/quiz', function (Request $request, Response $response){
 	$topics = new Topics($this->db);
 	$list = $topics->getList();
 
-	$response->getBody()->write(var_export($list, true));
+	$response->getBody()->write(json_encode($list));
+
+	$response->withJSON();
 
 	return $response;
 
@@ -77,14 +106,13 @@ $app->get('/quiz', function (Request $request, Response $response){
 
 $app->get('/quiz/start', function (Request $request, Response $response){
 	$response->getBody()->write("Start ...");
-
 });
 
 $app->get('/users', function (Request $request, Response $response){
 	$admin = new Admin($this->db);
 	$list = $admin->users();
 
-	$response->getBody()->write(var_export($list, true));
+	$response->getBody()->write(json_encode($list));
 
 	return $response;
 });
