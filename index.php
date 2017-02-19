@@ -4,16 +4,7 @@ use M1ke\Sql\ExtendedPdo;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-require 'vendor/autoload.php';
-
-define('DIR', __DIR__);
-define('TWIG_SRC', DIR . '/templates');
-define('TWIG_CACHE', DIR . '/twig_cache');
-
-
-spl_autoload_register(function ($classname){
-	require("objects/" . $classname . ".php");
-});
+require __DIR__.'bootstrap.php';
 
 $config = [
 	'settings' => [

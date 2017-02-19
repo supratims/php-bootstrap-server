@@ -1,10 +1,10 @@
 {
-	"name": "supratims/php-server",
-	"description": "Simple php rest server",
+	"name": "supratims/php-bootstrap-server",
+	"description": "Simple php server to be used as bootstrap for a quick start",
 	"authors": [
 		{
-            	"name": "Supratim Chowdhury",
-		"email": "supratims@gmail.com"
+			"name": "Supratim Chowdhury",
+			"email": "supratims@gmail.com"
 		}
 	],
 	"require": {

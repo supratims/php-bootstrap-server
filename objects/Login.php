@@ -2,7 +2,6 @@
 
 class Login extends BaseDao {
 
-
 	public function authenticate($login, $password){
 		$user = $this->db->selectOne('users', ['email' => $login]);
 
