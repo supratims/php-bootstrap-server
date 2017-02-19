@@ -2,3 +2,4 @@
 .idea/
 /twig_cache/
 /bower_components/
+.DS_Store

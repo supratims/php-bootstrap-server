@@ -4,7 +4,7 @@ use M1ke\Sql\ExtendedPdo;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-require __DIR__.'bootstrap.php';
+require __DIR__.'/bootstrap.php';
 
 $config = [
 	'settings' => [
@@ -52,8 +52,12 @@ $container['twig'] = function ($c){
 	return $twig;
 };
 
+// Bind generic page routes here
+
 $app->get('/', function (Request $request, Response $response, $args = []){
-	$response->getBody()->write("Home");
+	$response = $this->twig->render('home.twig');
+
+	return $response;
 });
 
 $app->get('/login', function (Request $request, Response $response, $args = []){
@@ -83,29 +87,12 @@ $app->post('/login', function (Request $request, Response $response, $args = [])
 	//return $res->withStatus(302)->withHeader('Location', 'your-new-uri');
 });
 
-$app->get('/quiz', function (Request $request, Response $response){
-	$topics = new Topics($this->db);
-	$list = $topics->getList();
+// Bind REST routes here
 
-	$response->getBody()->write(json_encode($list));
-
-	$response->withJSON();
-
-	return $response;
-
-});
-
-$app->get('/quiz/start', function (Request $request, Response $response){
-	$response->getBody()->write("Start ...");
-});
-
-$app->get('/users', function (Request $request, Response $response){
-	$admin = new Admin($this->db);
-	$list = $admin->users();
-
-	$response->getBody()->write(json_encode($list));
-
-	return $response;
+$app->any('/books/[{id}]', function (Request $request, Response $response, $args = []) {
+	$response->getBody()->write('Hey !'.print_r($args, true));
+	// Apply changes to books or book identified by $args['id'] if specified.
+	// To check which method is used: $request->getMethod();
 });
 
 $app->run();
